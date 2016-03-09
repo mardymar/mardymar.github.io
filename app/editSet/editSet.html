@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <script>Parse.initialize("yALz7vNO9fuoFoq54npm2CkFbF7TX96sduJsINse", "cDRWIAeN8HQYG1b1pUEc1gVtg5lNmsOTbNpEEXy4");</script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../style.css"/>
+    <title>Edit Set</title>
+</head>
+<body>
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="blog-nav-item" href="../../index.html">Log Out</a>
+            <a class="blog-nav-item" href="../welcome/welcome.html">Welcome</a>
+            <a class="blog-nav-item" href="../newSet/newSet.html">Add a Set</a>
+            <a class="blog-nav-item" href="../viewSets/viewSets.html">View Sets</a>
+            <a class="blog-nav-item" href="../groups/groups.html">Study Groups</a>
+            <a class="blog-nav-item active">Edit Set</a>
+        </nav>
+    </div>
+</div>
+
+<div class="col-sm-12 blog-main">
+    <form class="form-addCards form-inline" role="form" id="parent">
+        <div class="col-xs-10">
+            <input type="text" id="setName" class="form-control" placeholder="Enter Title" required="" tabindex="1" autocomplete="off">
+        </div >
+        <div class="col-xs-2" id="submitBtn">
+            <button class="btn btn-primary" onclick="submitToParse()">Save</button>
+        </div>
+    </form>
+    <button type="button" class="btn btn-success col-xs-9" onclick="addLine()" id="plusBtn"><span
+            class="glyphicon glyphicon-plus"></span></button>
+</div>
+
+<script src="editSet.js"></script>
+</body>
+</html>

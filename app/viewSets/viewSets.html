@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <script>Parse.initialize("yALz7vNO9fuoFoq54npm2CkFbF7TX96sduJsINse", "cDRWIAeN8HQYG1b1pUEc1gVtg5lNmsOTbNpEEXy4");</script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../style.css"/>
+    <script src="viewSets.js"></script>
+
+    <title>View Sets</title>
+</head>
+<body>
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="blog-nav-item" href="../../index.html">Log Out</a>
+            <a class="blog-nav-item" href="../welcome/welcome.html">Welcome</a>
+            <a class="blog-nav-item" href="../newSet/newSet.html">Add a Set</a>
+            <a class="blog-nav-item active">View Sets</a>
+            <a class="blog-nav-item" href="../groups/groups.html">Study Groups</a>
+        </nav>
+    </div>
+</div>
+<div id="sidebar-wrapper" class="col-xs-3 blog-main well-sm">
+
+</div>
+
+<div class="col-xs-9 well-lg">
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="col-md-2">Set</th>
+            <th class="col-md-2">Term</th>
+            <th class="col-md-2">Definition</th>
+            <th class="col-md-2"><button type="button" class="btn btn-success" onclick="deleteGroups()">Create Groups</button></th>
+            <th align="right" class="col-md-1"><button type="button" class="btn btn-danger btn-sm" onclick="deleteAllFromParse()">Delete All</button></th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+</div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">I'm a modal!</h3>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li>
+               <!-- <a href="#" onclick="$event.preventDefault(); selected.item = item">{{ item }}</a>-->
+            </li>
+        </ul>
+        Selected: <b>{{ selected.item }}</b>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" onclick="ok()">OK</button>
+        <button class="btn btn-warning" type="button" onclick="cancel()">Cancel</button>
+    </div>
+</script>
+
+</body>
+</html>

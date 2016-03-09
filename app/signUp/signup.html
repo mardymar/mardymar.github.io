@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <script src="http://www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="../../style.css" rel="stylesheet">
+
+
+    <title>Sign Up</title>
+</head>
+<body>
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="blog-nav-item" href="../../index.html">Sign In</a>
+            <a class="blog-nav-item active" href="signup.html">Create Account</a>
+        </nav>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+            <div class="main-container col-sm-12 blog-main">
+                <div class="form-signup" role="form" onclick= "submitSignUp()">
+                    <h2 class="form-signup-heading" id="login-greeting">Create New Account</h2>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username" required="" autofocus="">
+                    <input type="password" name="supassword" id="password" class="form-control" placeholder="Password" required="">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email" required="">
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+                </div>
+            </div>
+    </div>
+</div>
+
+<script>Parse.initialize("yALz7vNO9fuoFoq54npm2CkFbF7TX96sduJsINse", "cDRWIAeN8HQYG1b1pUEc1gVtg5lNmsOTbNpEEXy4");</script>
+<script src="../myApp.js"></script>
+<script src="signup.js"></script>
+</body>
+</html>

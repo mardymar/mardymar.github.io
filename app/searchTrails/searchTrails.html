@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>It's Raining Definitions
+    </title>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../style.css">
+    <title>Search Trails</title>
+</head>
+<body>
+
+<div class="blog-masthead">
+    <div class="container">
+        <nav class="blog-nav">
+            <a class="blog-nav-item" href="../../index.html">Log Out</a>
+            <a class="blog-nav-item" href="../welcome/welcome.html">Welcome</a>
+            <a class="blog-nav-item active" >Trails Search</a>
+        </nav>
+    </div>
+</div>
+
+<div class="row"></div>
+<div class="row"></div>
+<form class="form-inline text-center" id="searchBar" role="form">
+    <label for="setTerm">Enter a city name: </label>
+    <input type="text" class="form-control" id="setTerm">
+    <button type="submit" class="btn btn-default" onclick="setLocation()" >Submit</button>
+</form>
+
+<div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-4 text-center">
+        <div id="googleMap"></div>
+    </div>
+    <div class="col-xs-1"></div>
+    <div class="col-xs-5">
+        <h3 id="title"></h3>
+        <div class="well" id="descrip"></div>
+        <button type="button" class="btn btn-info" onclick="viewPhotos()" id="info"></button>
+    </div>
+    <div class="col-xs-1"></div>
+</div>
+
+<div class="container">
+    <table class="table" id="photoTable">
+        <tbody id="mainFeatures">
+
+        </tbody>
+    </table>
+</div>
+
+<script src="searchTrails.js"></script>
+</body>
+</html>
