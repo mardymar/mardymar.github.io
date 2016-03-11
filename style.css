@@ -416,15 +416,17 @@ h6, .h6 {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
-#definition {
+
+#definitionInput {
     width: 100%;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-#contusername{
+#termEntry {
     margin-right: -15px;
 }
-#contemail {
+
+#definitionEntry {
     margin-left: -15px;
 
 }
