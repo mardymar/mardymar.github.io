@@ -21,7 +21,7 @@ function makeLines() {
         var parent = document.getElementById("parent");
         var input1 = document.createElement('input');
         input1.type = "text";
-        input1.id = "termEntry";
+        input1.id = "term";
         input1.className = "form-control";
         input1.value = key.term;
         input1.autofocus = "";
@@ -29,7 +29,7 @@ function makeLines() {
         input1.tabIndex = "2";
         var input2 = document.createElement('input');
         input2.type = "text";
-        input2.id = "definitionEntry";
+        input2.id = "definitionInput";
         input2.className = "form-control";
         input2.value = key.definition;
         input2.autofocus = "";
@@ -37,11 +37,11 @@ function makeLines() {
         input2.tabIndex = "2";
         var div1 = document.createElement('div');
         div1.className = "col-xs-5";
-        div1.id = "contusername";
+        div1.id = "termEntry";
         div1.appendChild(input1);
         var div2 = document.createElement('div');
         div2.className = "col-xs-5";
-        div2.id = "contemail";
+        div2.id = "definitionEntry";
         div2.appendChild(input2);
         var span1 = document.createElement('span');
         span1.className = "glyphicon glyphicon-minus";
