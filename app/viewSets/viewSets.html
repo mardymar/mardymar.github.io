@@ -7,7 +7,6 @@
     <script src="../../assets/underscore.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../style.css"/>
-    <script src="viewSets.js"></script>
 
     <title>View Sets</title>
 </head>
@@ -43,23 +42,7 @@
     </table>
 </div>
 
-<script type="text/ng-template" id="myModalContent.html">
-    <div class="modal-header">
-        <h3 class="modal-title">I'm a modal!</h3>
-    </div>
-    <div class="modal-body">
-        <ul>
-            <li>
-               <!-- <a href="#" onclick="$event.preventDefault(); selected.item = item">{{ item }}</a>-->
-            </li>
-        </ul>
-        Selected: <b>{{ selected.item }}</b>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" onclick="ok()">OK</button>
-        <button class="btn btn-warning" type="button" onclick="cancel()">Cancel</button>
-    </div>
-</script>
+<script src="viewSets.js"></script>
 
 </body>
 </html>
