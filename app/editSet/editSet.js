@@ -1,54 +1,62 @@
-var sessionSetId = sessionStorage.getItem('editSet');
-var cards = [];
-var theSet;
+var sessionSetId = sessionStorage.getItem('editSet'), cards = [], theSet;
 
-getSet();
-
-function Card(term, definition, setId, objectId) {
+//Basic card object
+var Card = function(term, definition, objectId) {
     this.term = term;
     this.definition = definition;
-    this.setId = setId;
-    this.objectId = objectId;
-}
+};
 
-function Set(setId, title) {
+//Basic set object
+var Set = function(setId, title) {
     this.setId = setId;
     this.title = title;
-}
+};
 
-function makeLines() {
-    cards.forEach(function (key) {
+//Initialize the input lines in the form with the values from the cards array retrieved from Parse
+var makeLines = function() {
+    _.each(cards, function (key) {
         var parent = document.getElementById("parent");
+
+        //Term input
         var input1 = document.createElement('input');
         input1.type = "text";
         input1.id = "term";
         input1.className = "form-control";
+        //Set value of term to card term property
         input1.value = key.term;
         input1.autofocus = "";
         input1.autocomplete = "off";
         input1.tabIndex = "2";
+
+        //Definition input
         var input2 = document.createElement('input');
         input2.type = "text";
         input2.id = "definitionInput";
         input2.className = "form-control";
+        //Set value of definition to card definition property
         input2.value = key.definition;
         input2.autofocus = "";
         input2.autocomplete = "off";
         input2.tabIndex = "2";
+
+        //Term div with bootstrap
         var div1 = document.createElement('div');
         div1.className = "col-xs-5";
         div1.id = "termEntry";
         div1.appendChild(input1);
+
+        //Definition div with bootstrap
         var div2 = document.createElement('div');
         div2.className = "col-xs-5";
         div2.id = "definitionEntry";
         div2.appendChild(input2);
+
+        //Delete button with bootstrap
         var span1 = document.createElement('span');
         span1.className = "glyphicon glyphicon-minus";
         var button1 = document.createElement('button');
         button1.className = 'btn btn-danger';
         button1.type = 'button';
-        button1.onclick = 'removeLine()';
         button1.appendChild(span1);
         button1.addEventListener('click', function () {
             deleteItem(button1);
@@ -56,17 +64,22 @@ function makeLines() {
         var div3 = document.createElement('div');
         div3.className = "col-xs-2";
         div3.appendChild(button1);
+
+        //Append the card to the parent
         var cardsEntry = document.createElement('div');
-        cardsEntry.name = 'cardsEntry';
+        cardsEntry.className = 'cardsEntry';
         cardsEntry.appendChild(div1);
         cardsEntry.appendChild(div2);
         cardsEntry.appendChild(div3);
         parent.appendChild(cardsEntry);
     });
-}
+};
 
+//Called after the add button is clicked
 function addLine() {
     var parent = document.getElementById("parent");
+
+    //Term input
     var input1 = document.createElement('input');
     input1.type = "text";
     input1.id = "term";
@@ -75,138 +88,185 @@ function addLine() {
     input1.autofocus = "";
     input1.autocomplete = "off";
     input1.tabIndex = "2";
+
+    //Definition input
     var input2 = document.createElement('input');
     input2.type = "text";
-    input2.id = "definition";
+    input2.id = "definitionInput";
     input2.className = "form-control";
     input2.placeholder = "Definition";
     input2.autofocus = "";
     input2.autocomplete = "off";
     input2.tabIndex = "2";
+
+    //Term div with bootstrap
     var div1 = document.createElement('div');
     div1.className = "col-xs-5";
-    div1.id = "contusername";
+    div1.id = "termEntry";
     div1.appendChild(input1);
+
+    //Definition div with bootstrap
     var div2 = document.createElement('div');
     div2.className = "col-xs-5";
-    div2.id = "contemail";
+    div2.id = "definitionEntry";
     div2.appendChild(input2);
+
+    //Delete button with bootstrap and onClick event to deleteItem()
     var span1 = document.createElement('span');
     span1.className = "glyphicon glyphicon-minus";
     var button1 = document.createElement('button');
     button1.className = 'btn btn-danger';
     button1.type = 'button';
-    button1.onclick = 'removeLine()';
     button1.appendChild(span1);
     button1.addEventListener('click', function () {
         deleteItem(button1);
     }, false);
+
+    //Delete button div with bootstrap
     var div3 = document.createElement('div');
     div3.className = "col-xs-2";
     div3.appendChild(button1);
+
+    //Append the new line to the parent
     var cardsEntry = document.createElement('div');
-    cardsEntry.name = 'cardsEntry';
+    cardsEntry.className = 'cardsEntry';
     cardsEntry.appendChild(div1);
     cardsEntry.appendChild(div2);
     cardsEntry.appendChild(div3);
     parent.appendChild(cardsEntry);
 }
 
-var deleteItem = function (button) {
-    cards = cards.filter(function (key) {
-        if (button.parentNode.parentNode.children[0].children[0].value == key.term) return false;
-        return true;
+//Called when the delete button is clicked
+function deleteItem(button) {
+
+    //Find the cards with the term that is going to be deleted and remove them from the cards array
+    cards = _.filter(cards, function (c) {
+        return button.parentNode.parentNode.children[0].children[0].value != c.term;
     });
+
+    //Remove the div that contains the line with the button
     button.parentNode.parentNode.parentNode.removeChild(button.parentNode.parentNode);
-    console.log(cards);
-};
-
-function getCards() {
-    var CardsObject = Parse.Object.extend("Cards");
-    var query = new Parse.Query(CardsObject);
-
-    query.equalTo("setsID", {
-        __type: "Pointer",
-        className: "Sets",
-        objectId: sessionSetId
-    });
-
-
-    query.find({
-        success: function (results) {
-            for (var i in results) {
-                var aCard = new Card(results[i].get("term"), results[i].get("definition"), results[i].get("setsID"), results[i].id);
-                cards.push(aCard);
-            }
-
-            makeLines();
-        },
-        error: function (error) {
-            alert(error.message);
-        }
-    });
 }
 
-function getSet() {
+//Called on load. Calls on Parse for the sets created by a particular user and populates the sets array
+var getSet = function() {
     var SetsObject = Parse.Object.extend("Sets");
     var query = new Parse.Query(SetsObject);
 
+    //Filter query based on user
     query.equalTo("objectId", sessionSetId);
 
+    //Execute query and return results
     query.find({
         success: function (results) {
-            for (var i in results) {
-                theSet = new Set(results[i].id, results[i].get("title"));
-            }
+
+            //Populate sets array
+            theSet = new Set(results[0].id, results[0].get("title"));
+
+            //Initialize title value
             document.getElementById("setName").value = theSet.title;
+
+            //Can now populate cards array
             getCards();
         },
         error: function (error) {
             alert(error.message);
         }
     });
-}
+};
 
-function submitToParse() {
+//Called after sets are returned from Parse
+var getCards = function() {
+    var CardsObject = Parse.Object.extend("Cards");
+    var query = new Parse.Query(CardsObject);
+
+    //Filter cards based on cards created by a particular user
+    query.equalTo("setsID", {
+        __type: "Pointer",
+        className: "Sets",
+        objectId: sessionSetId
+    });
+
+    //Execute query
+    query.find({
+        success: function (results) {
+
+            //Populate cards array
+            cards = _.map(results, function(c){
+                return new Card(c.get("term"), c.get("definition"), c.get("setsID"), c.id);
+            });
+
+            //Can now initialize the lines on the entry form
+            makeLines();
+        },
+        error: function (error) {
+            alert(error.message);
+        }
+    });
+};
+
+//Called when the submit button is clicked
+var submitCards = function(){
     event.preventDefault();
+
+    //Get the cards entry form and create an array of its elements
+    var elements = document.getElementsByClassName("cardsEntry");
+    //Cast elements to array
+    var elementsArr =  Array.prototype.slice.call(elements);
+
+    //Use the elementsArr to get data from form and save the term and definitions to a new array of cards
+    cards = _.map(elementsArr, function(item){
+        return new Card(item.children[0].children[0].value, item.children[1].children[0].value);
+    });
+
+    //Call submitToParse to save the newly cards in parse
+    submitToParse();
+};
+
+//Call to parse to create new set name and cards
+var submitToParse = function() {
     var CardsObject = Parse.Object.extend("Cards");
     var SetObject = Parse.Object.extend("Sets");
     var cardsQuery = new Parse.Query(CardsObject);
 
+    //Filter cards based on the set id
     cardsQuery.equalTo("setsID", {
         __type: "Pointer",
         className: "Sets",
         objectId: theSet.setId
     });
 
-    var point = new SetObject();
-    point.id = theSet.setId;
-    point.set("title", theSet.title);
+    //Find the set in Parse then rewrite its title
+    var saveSet = new SetObject();
+    saveSet.id = theSet.setId;
+    saveSet.set("title", theSet.title);
 
-    point.save(null, {
+    //Submit the title change to the set
+    saveSet.save(null, {
         success: function () {
-            console.log('Point set');
+
+            //Find all cards in the set and delete them
             cardsQuery.find({
                     success: function (results) {
-                        console.log("start");
-                        console.log(results);
                         Parse.Object.destroyAll(results);
-                        var cardArr = [];
-                        cards.forEach(function (key) {
+
+                        //Repopulate the cards table with the cards array
+                        var cardArr = _.map(cards, function (c) {
                             var cs = new CardsObject;
-                            cs.set("term", key.term);
-                            cs.set("definition", key.definition);
+                            cs.set("term", c.term);
+                            cs.set("definition", c.definition);
                             cs.set('setsID', {
                                 __type: "Pointer",
                                 className: "Sets",
                                 objectId: theSet.setId
                             });
-                            cardArr.push(cs);
+                            return cs;
                         });
 
+                        //Save the updated cards
                         Parse.Object.saveAll(cardArr, {
-                            success: function (cs) {
-                                // Execute any logic that should take place after the object is saved.
+                            success: function () {
+                                //Edit is finished. Go back to viewSets.
                                 location.href = "../viewSets/viewSets.html";
                             },
                             error: function (cs, error) {
@@ -228,4 +288,7 @@ function submitToParse() {
             alert('1-Failed to update title, with error code: ' + error.message);
         }
     });
-}
+};
+
+//function to execute on load
+getSet();
