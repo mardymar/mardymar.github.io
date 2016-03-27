@@ -32,10 +32,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewSets.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="viewSets.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/viewSets/viewSets.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7199074">
+            <state vertical-scroll-proportion="-20.064516">
               <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
               <folding />
             </state>
@@ -67,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="welcome.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="welcome.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/welcome/welcome.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.451612">
-              <caret line="26" column="72" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.662037">
+              <caret line="26" column="139" selection-start-line="26" selection-start-column="139" selection-end-line="26" selection-end-column="139" />
               <folding />
             </state>
           </provider>
@@ -107,7 +107,6 @@
         <option value="$PROJECT_DIR$/app/login/index.js" />
         <option value="$PROJECT_DIR$/app/searchTrails/searchTrails.html" />
         <option value="$PROJECT_DIR$/style.css" />
-        <option value="$PROJECT_DIR$/app/welcome/welcome.html" />
         <option value="$PROJECT_DIR$/Assets/underscore.js" />
         <option value="$PROJECT_DIR$/app/newSet/newSet.html" />
         <option value="$PROJECT_DIR$/app/newSet/newSet.js" />
@@ -117,6 +116,7 @@
         <option value="$PROJECT_DIR$/app/editSet/editSet.js" />
         <option value="$PROJECT_DIR$/app/viewSets/viewSets.js" />
         <option value="$PROJECT_DIR$/app/viewSets/viewSets.html" />
+        <option value="$PROJECT_DIR$/app/welcome/welcome.html" />
       </list>
     </option>
   </component>
@@ -810,18 +810,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/welcome/welcome.html">
+    <entry file="file://$PROJECT_DIR$/app/viewSets/viewSets.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.451612">
-          <caret line="26" column="72" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
+        <state vertical-scroll-proportion="-20.064516">
+          <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/viewSets/viewSets.html">
+    <entry file="file://$PROJECT_DIR$/app/welcome/welcome.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7199074">
-          <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.662037">
+          <caret line="26" column="139" selection-start-line="26" selection-start-column="139" selection-end-line="26" selection-end-column="139" />
           <folding />
         </state>
       </provider>
